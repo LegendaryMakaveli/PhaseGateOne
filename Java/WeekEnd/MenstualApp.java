@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class MenstrualFlowCalculator {
+public class MenstualApp {
 public static String[] months = {
 	"january", "february", "march", "april", "may", "june",
         "july", "august", "september", "october", "november", "december"
@@ -20,62 +20,66 @@ monthName = monthName.toLowerCase().trim();
 }
 
 
-public static void calculateMenstrualFlow(int day, String month) {
+public static String calculateMenstrualFlow(int day, String month) {
 	int monthNumber = getMonthNumber(month);
 		if (monthNumber == 0) {
-			System.out.println("Invalid month.");
-		return;
+return "Invalid month.";
 }
 int currentYear = LocalDate.now().getYear();
-        LocalDate startDate = LocalDate.of(currentYear, monthNumber, day);
+LocalDate startDate = LocalDate.of(currentYear, monthNumber, day);
 
 LocalDate menstrualEnd = startDate.plusDays(3);
-LocalDate dangerDate = menstrualEnd.plusDays(3);
+LocalDate dangerousDate = menstrualEnd.plusDays(3);
 
 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
 return "Your flow will run till " + menstrualEnd.format(formatter) +
-           "\nYour dangerous date ends on " + dangerDate.format(formatter) + 
+           "\nYour dangerous date ends on " + dangerousDate.format(formatter) + 
            " if you have hmmm in-between this date....you fit don carry belle oo";
 }
 
 
 
-public static void getOvulationPeriod(int day, String month) {
-int monthNumber = getMonthNumber(month);
-	if (monthNumber == 0) {
-		System.out.println("Invalid month.");
-		return;
+
+
+
+public static String getOvulationPeriod(int day, String month) {
+	int monthNumber = getMonthNumber(month);
+		if (monthNumber == 0) {
+return "Invalid month.";
 }
+
 int ovulationStartDay = day + 14;
 int currentYear = LocalDate.now().getYear();
-LocalDate ovulationStart = LocalDate.of(currentYear, monthNumber,  ovulationStartDay);
+LocalDate ovulationStart = LocalDate.of(currentYear, monthNumber, ovulationStartDay);
 
 LocalDate ovulationEnd = ovulationStart.plusDays(7);
 
-
 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-	return "\nYour ovulation will period starts on " + ovulationStart.format(formatter) +
-			"\nYour ovulation will period ends on " + ovulationEnd.format(formatter) + 
-			"make sure you keep menstrual pad on you all day and nur try wear white\n\n\n			\n\n";
+return "\nYour ovulation period starts on " + ovulationStart.format(formatter) +
+           "\nYour ovulation period ends on " + ovulationEnd.format(formatter) + 
+           " make sure you keep menstrual pad on you all day and nur try wear white\n\n\n\n\n";
 }
 
 
 
-public static void calculateSafeDays(int day, String month) {
-int monthNumber = getMonthNumber(month);
-	if (monthNumber == -1) {
-		System.out.println("\nInvalid month.");
-	return;
+
+
+public static String calculateSafeDays(int day, String month) {
+    int monthNumber = getMonthNumber(month);
+    if (monthNumber == 0) {  
+return "Invalid month.";
 }
+
+
 int currentYear = LocalDate.now().getYear();
 int safeStartDay = day;
-LocalDate safeStart = LocalDate.of(currentYear, monthNumber, 1).plusDays(safeStartDay - 1);
+LocalDate safeStart = LocalDate.of(currentYear, monthNumber, safeStartDay);
 LocalDate safeEnd = safeStart.plusDays(14);
 
-DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-	return"\nYour safe period starts on " + safeStart.format(formatter) + 
-			"\nYour safe period ends on " + safeEnd.format(formatter) + 
-			"Na so you enter ovulation period ooo\n\n\n\n\n";
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+    return "\nYour safe period starts on " + safeStart.format(formatter) + 
+           "\nYour safe period ends on " + safeEnd.format(formatter) + 
+           "\nNa so you enter ovulation period ooo\n\n\n\n\n";
 }
 
 
@@ -108,7 +112,7 @@ switch (choice) {
 		System.out.print("\nEnter the month (e.g. January):   ");
 		String newMonth = input.next();
 		
-		calculateMenstrualFlow(newDay, newMonth);
+		System.out.println(calculateMenstrualFlow(newDay, newMonth));
 		break;
 	
 	case "2":
@@ -119,7 +123,7 @@ switch (choice) {
 		System.out.print("\nEnter the month (e.g. January):   ");
 		String newMonth2 = input.next();
 
-		calculateSafeDays(newDay2, newMonth2);
+		System.out.println(calculateSafeDays(newDay2, newMonth2));
 		break;
 
 
@@ -130,7 +134,7 @@ switch (choice) {
 		System.out.print("\nEnter the month (e.g. January):   ");
 		String newMonth3 = input.next();
 
-		getOvulationPeriod(newDay3, newMonth3);
+		System.out.println(getOvulationPeriod(newDay3, newMonth3));
 		break;
 
 
