@@ -1,17 +1,30 @@
 from datetime import datetime, timedelta
 
-month_map = {
-	"january": 1, "february": 2, "match": 3, "april": 4, "may": 5, "june": 6, "july": 7, "august": 8, "september": 9, "october": 10, "november": 11, "december": 12
+month_names = {
+	"january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6, "july": 7, "august": 8, "september": 9, "october": 10, "november": 11, "december": 12
 
 }
 
 def calculate_menstrual_flow(day, month) :
+	if type(month) == float :
+		raise ValueError("no float")
+	elif type(month) == int :
+		raise ValueError("no number pls")
+	elif type(day) == str :
+		raise ValueError("No string in days")
+	elif type(day) == float :
+		raise ValueError("no float")
+	if not day :
+		raise TypeError("cannot be empty")
+	if not month :
+		raise TypeError("cannot be empty")
+
 	month = month.strip().lower()
-	if month not in month_map :
+	if month not in month_names :
 		print("invalid month..Please try again")
 		return
 
-	month = month_map[month]
+	month = month_names[month]
 	current_year = datetime.now().year
 
 	MENSTRUAL_FLOW = 3;
@@ -22,17 +35,30 @@ def calculate_menstrual_flow(day, month) :
 	calculate_dangrous_date = calculate_menstrual + timedelta(days=DANGEROUS_DATE)
 
 	print(f"\n Your flow will run till {calculate_menstrual.strftime("%d %B %Y")}")
-	print(f"\n Your dangerous date end on {calculate_dangrous_date.strftime("%d %B %Y")}  if you have sex admist this date....you fit don carry belle oo\n\n\n\n\n")
+	print(f"\n Your dangerous date end on {calculate_dangrous_date.strftime("%d %B %Y")}  if you have hmmm in-between this date....you fit don carry belle oo\n\n\n\n\n")
 
 
 def get_ovulation_period(day, month) :
+	if type(month) == float :
+		raise ValueError("no float")
+	elif type(month) == int :
+		raise ValueError("no number pls")
+	elif type(day) == str :
+		raise ValueError("No string in days")
+	elif type(day) == float :
+		raise ValueError("no float")
+	if not day :
+		raise TypeError("cannot be empty")
+	if not month :
+		raise TypeError("cannot be empty")
+
 	print("YOUR DANGERIOUS DAY END DATE IS THREE(3) DAYS AFTER YOUR MENSTRUAL FLOW END DATE")
 	month = month.strip().lower()
-	if month not in month_map :
+	if month not in month_names :
 		print("invalid month..Please try again")
 		return
 
-	month = month_map[month]
+	month = month_names[month]
 	current_year = datetime.now().year
 
 	FREE_DATE = 14;
@@ -47,13 +73,26 @@ def get_ovulation_period(day, month) :
 
 
 def calculate_safe_days(day, month) :
+	if type(month) == float :
+		raise ValueError("no float")
+	elif type(month) == int :
+		raise ValueError("no number pls")
+	elif type(day) == str :
+		raise ValueError("No string in days")
+	elif type(day) == float :
+		raise ValueError("no float")
+	if not day :
+		raise TypeError("cannot be empty")
+	if not month :
+		raise TypeError("cannot be empty")
+
 	print("YOUR DANGERIOUS DAY END DATE IS THREE(3) DAYS AFTER YOUR MENSTRUAL FLOW END DATE")
 	month = month.strip().lower()
-	if month not in month_map :
+	if month not in month_names :
 		print("invalid month..Please try again")
 		return
 
-	month = month_map[month]
+	month = month_names[month]
 	current_year = datetime.now().year
 	
 	free_day_start_date = day + 1
@@ -105,9 +144,6 @@ just dey remove 1 day if na 27 days be your own...else your are good to go!!.
 				break
 
 main_menu()
-
-
-	
 
 
 	
