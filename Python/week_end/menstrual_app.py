@@ -5,16 +5,12 @@ month_map = {
 
 }
 
-def calculate_menstrual_flow() :
-	day = int(input("Enter your menstual start day (e.g 20):  "))
-	
+def calculate_menstrual_flow(day, month) :
 	while True :
-		month = input("Enter the month (e.g.  January):  ").strip().lower()
-		if month in month_map :
-			month = month_map[month]
-			break
-		else :
+		month = month.strip().lower()
+		if month not in month_map :
 			print("invalid month..Please try again")
+			return
 
 	current_year = datetime.now().year
 
@@ -29,17 +25,13 @@ def calculate_menstrual_flow() :
 	print(f"\n Your dangerous date end on {calculate_dangrous_date.strftime("%d %B %Y")}  if you have sex admist this date....you fit don carry belle oo")
 
 
-def get_ovulation_period() :
-	print("Your dangerous_date end date is three day after your menstruation flow ends")
-	day = int(input("Enter your dangerous day end date(e.g 23):  "))
-	
+def get_ovulation_period(day, month) :
+	print("YOUR DANGERIOUS DAY END DATE IS THREE(3) DAYS AFTER YOUR MENSTRUAL FLOW END DATE")
 	while True :
-		month = input("Enter the month (e.g.  January):  ").strip().lower()
-		if month in month_map :
-			month = month_map[month]
-			break
-		else :
+		month = month.strip().lower()
+		if month not in month_map :
 			print("invalid month..Please try again")
+			return
 
 	current_year = datetime.now().year
 
@@ -54,7 +46,48 @@ def get_ovulation_period() :
 	print(f"\n Your ovulation period will end on {ovulation_stop_date.strftime("%d %B %Y")} make sure you keep menstrual pad on you all day and nur try wear white")
 
 
-get_ovulation_period()
+def safe_days(day, month) :
+	print("YOUR DANGERIOUS DAY END DATE IS THREE(3) DAYS AFTER YOUR MENSTRUAL FLOW END DATE")
+	while True :
+		month = month.strip().lower()
+		if month in month_map :
+			month = month_map[month]
+			break
+		else :
+			print("invalid month..Please try again")
+
+	current_year = datetime.now().year
+	
+	free_day_start_date = day + 1
+	FREE_DAYS = 14
+	
+	start_date = datetime(current_year, month, free_day_start_date)
+	ovulation_stop_date = start_date + timedelta(days=FREE_DAYS)
+
+	print(f"\n Your safe period will start on {start_date.strftime("%d %B %Y")}")
+	print(f"\n Your safe period will end on {ovulation_stop_date.strftime("%d %B %Y")} you don enter ovulation period niyen oo.....careful with your attitude this period!")
+
+
+
+def main_menu() :
+	while True :
+		print("""
+			WELCOME TO YOUR MENTRUAL FLOW CALCULATOR
+
+			1 -> Calculate your mentrual flow date
+			2 -> Calculate your free days/ days wey you fit dey hmmmm anyhow..
+			3 -> Calculate your ovulation period
+			0 -> Exit
+		""")
+		choice = input("Enter your choice: ")
+		match(choice) :
+			case "1": 
+				day = int(input("Enter your menstuation start date (e.g 20):   "))
+				month = input("Enter the month (e.g January):  ") 
+				calculate_menstrual_flow(day, month)
+main_menu()
+
+
 	
 
 
